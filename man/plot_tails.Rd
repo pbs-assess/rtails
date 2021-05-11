@@ -4,15 +4,17 @@
 \alias{plot_tails}
 \title{Plot heavy-tailed deviations}
 \usage{
-plot_tails(vec)
+plot_tails(vec, log = FALSE)
 }
 \arguments{
 \item{vec}{Vector of random deviates.}
+
+\item{log}{Should the y-axis be log transformed?}
 }
 \value{
-A scatter plot showing the deviation values in the vector.
-Sample mean is shown by green line, and the marginal distribution is
-shown by the rug plot on the right side of the plot.
+A scatter plot showing the deviation values in the vector. Sample
+  mean is shown by dashed blue line, and the marginal distribution is shown
+  by the rug plot on the right side of the plot.
 }
 \description{
 A simple graphical representation of random heavy-tailed deviations created
@@ -20,8 +22,8 @@ with `rpareto_tails()`, `rst_tails()`, `rnorm_tails()`, or any other
 multiplicative random deviates.
 }
 \details{
-If `vec` is the output of `rnorm_tails()` where sporadic values
-have been included, these values are marked in red.
+If `vec` is the output of `rnorm_tails()` where sporadic values have
+  been included, these values are marked in red.
 }
 \examples{
 rpt <- rpareto_tails(50, 3)
