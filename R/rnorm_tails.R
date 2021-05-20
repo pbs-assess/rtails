@@ -120,7 +120,7 @@ rnorm_tails <- function(n, sigma = 0.1, high_sigma = 2, rate = 1/38,
     if (!replace) x[high_ind] <- new_samp
   }
 
-  if (sample_bias_correct == TRUE & bias_correct == FALSE) {
+  if (sample_bias_correct) {
     if (replace) {
       stop("Cannot sample bias correct when replace = FALSE",
            "as 'n' is a positive vector centered around 1.", call. = FALSE)
