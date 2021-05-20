@@ -306,7 +306,7 @@ specifically the `Perr_y` parameter:
 library(DT)
 library(dplyr)
 library(MSEtool)
-MSEtool:::cpars_info %>% filter(Var == "Perr_y") %>% datatable()
+# MSEtool:::cpars_info %>% filter(Var == "Perr_y") %>% datatable()
 ```
 
 The `Perr_y` custom parameter has specific dimensions that need to be followed,
