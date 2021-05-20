@@ -7,6 +7,7 @@
 #' @param df degrees of freedom (> 0). Default is df = 10. df = -Inf is
 #' allowed if bias.correct = FALSE, where it becomes equivalent to the standard
 #' normal distribution.
+#' @param scale scale (> 0) of deviations.
 #' @param bias_correct logical. Should we bias correct using the sample mean.
 #'   The sample mean is calculated from exponentiated distribution,
 #'   but is subtracted from the distribution in normal space,
@@ -18,7 +19,7 @@
 #'   bias corrected and exponentiated. This is not equivalent to
 #'   log-transforming the distribution when `log = FALSE`.
 #' @param skew value of skewness parameter. If unspecified then no
-#'  skewness is incorporated. Defaults to `NULL`.
+#'  skewness is incorporated (`skew = 1`).
 #' @param seed seed. Numeric for `set.seed()`. Defaults to NA where no seed is
 #'   set.
 #'
@@ -33,8 +34,8 @@
 #' mean(rst) == 1
 #'
 #' @export
-rst_tails <- function(n, df = 10, bias_correct = TRUE, ac = 0, log = FALSE,
-                      skew = NULL, seed = NA) {
+rst_tails <- function(n, df = 10, scale = 1, bias_correct = TRUE, ac = 0,
+                      log = FALSE, skew = 1, seed = NA) {
 
   if (is.na(n) || n <= 0 || n != trunc(n) || length(n) != 1) {
     stop("'n' must be a positive integer.", call. = FALSE)
@@ -42,14 +43,12 @@ rst_tails <- function(n, df = 10, bias_correct = TRUE, ac = 0, log = FALSE,
 
   if (df <= 0) stop("Degrees of freedom parameter must be greater than zero.",
                     call. = FALSE)
+  if (scale <= 0) stop("Scale parameter must be greater than zero.",
+                       call. = FALSE)
 
   if (!is.na(seed)) set.seed(seed)
 
-  if (!is.null(skew)) {
-    x <- rsstd(n, nu = df, xi = skew)
-  } else {
-    x <- rt(n, df = df)
-  }
+  x <- rsstd(n, mean = 0, nu = df, sd = scale, xi = skew)
 
   if (ac != 0) x <- acfy(x, ac)
 

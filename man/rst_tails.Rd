@@ -7,10 +7,11 @@
 rst_tails(
   n,
   df = 10,
+  scale = 1,
   bias_correct = TRUE,
   ac = 0,
   log = FALSE,
-  skew = NULL,
+  skew = 1,
   seed = NA
 )
 }
@@ -20,6 +21,8 @@ rst_tails(
 \item{df}{degrees of freedom (> 0). Default is df = 10. df = -Inf is
 allowed if bias.correct = FALSE, where it becomes equivalent to the standard
 normal distribution.}
+
+\item{scale}{scale (> 0) of deviations.}
 
 \item{bias_correct}{logical. Should we bias correct using the sample mean.
 The sample mean is calculated from exponentiated distribution,
@@ -35,7 +38,7 @@ bias corrected and exponentiated. This is not equivalent to
 log-transforming the distribution when `log = FALSE`.}
 
 \item{skew}{value of skewness parameter. If unspecified then no
-skewness is incorporated. Defaults to `NULL`.}
+skewness is incorporated (`skew = 1`).}
 
 \item{seed}{seed. Numeric for `set.seed()`. Defaults to NA where no seed is
 set.}
