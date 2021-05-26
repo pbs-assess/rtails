@@ -4,7 +4,7 @@
 
 ``` r
 install.packages("remotes")
-remotes::install_github("sebpardo/rtails")
+remotes::install_github("pbs-assess/rtails")
 ```
 
 ## Introduction to `rtails`
